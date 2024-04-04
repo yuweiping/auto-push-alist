@@ -4,14 +4,15 @@
 
 ## Inputs
 
-|参数|描述|
-|----|----|
-|`username`|alist的用户名|
-|`password`|alist的密码|
-|`upUrl`|alist地址|
-|`saveDir`|alist保存的路径|
-|`upDir`|本地要上传的目录|
-|`upFile`|本地要上传的文件|
+|参数|描述|必填|
+|----|----|----|
+|`username`|alist的用户名|是|
+|`password`|alist的密码|是|
+|`upUrl`|alist地址|是|
+|`saveDir`|alist保存的路径|是|
+|`upDir`|本地要上传的目录|否|
+|`upFile`|本地要上传的文件|否|
+|`asTask`|是否添加为任务，默认为否,除了true其余值均为否|否|
 
 ## Example usage
 
@@ -24,6 +25,7 @@ with:
   upUrl: http://v5.123456.xyz
   saveDir: /public/baiduyun/
   upDir: ./apks
+  asTask: ture
 ```
 
 上传文件

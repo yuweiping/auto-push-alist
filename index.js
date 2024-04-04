@@ -11,6 +11,12 @@ const upUrl = core.getInput("upUrl");
 const saveDir = core.getInput("saveDir");
 const upDir = core.getInput("upDir");
 const upFile = core.getInput("upFile");
+const asTaskInput = core.getInput("asTask");
+
+let asTask = false;
+if (asTaskInput.toLowerCase() === "true") {
+  asTask = true;
+} 
 
 async function getToken() { 
   try {
@@ -28,7 +34,7 @@ async function upAlist(token, filePath) {
     const size = fileStats.size;
     const enpath = encodeURIComponent(`${saveDir}/${fileName}`);
     const fileData = fs.readFileSync(filePath);
-    let resp = await axios.put(`${upUrl}/api/fs/put`, fileData, { headers: { 'Authorization': token, 'File-Path': enpath, 'Content-Type': 'application/octet-stream', 'Content-Length': size } });
+    let resp = await axios.put(`${upUrl}/api/fs/put`, fileData, { headers: { 'Authorization': token, 'As-Task':asTask, 'File-Path': enpath, 'Content-Type': 'application/octet-stream', 'Content-Length': size } });
     console.log(filePath, ' -> ', resp.data.message);
   } catch (error) {
     console.error(filePath, ' -> Error upAlist :', error.message);

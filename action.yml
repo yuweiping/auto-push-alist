@@ -20,6 +20,9 @@ inputs:
   upFile:
     description: "本地要上传的文件"
     required: false
+  asTask:
+    description: "是否添加为任务"
+    required: false
 runs:
   # 脚本运行环境（按官方文档给的20版本来使用）
   using: "node20"
