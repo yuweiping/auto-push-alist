@@ -9522,6 +9522,7 @@ const password = core.getInput("password");
 const upUrl = core.getInput("upUrl");
 const saveDir = core.getInput("saveDir");
 const upDir = core.getInput("upDir");
+const upFile = core.getInput("upFile");
 
 async function getToken() { 
   try {
@@ -9574,10 +9575,16 @@ async function update() {
     if (!token) { 
       return console.log('token is null, plz check your url');
     }
-    readFileSync(upDir);
-    for await (file of filepaths) {
-      await upAlist(token, file);
+    if (upDir) {
+      readFileSync(upDir);
+      for await (file of filepaths) {
+        await upAlist(token, file);
+      }
     }
+    if (upFile) {
+      await upAlist(token, upFile);
+    }
+
     await refresh(token);
   } catch (e) {
     console.log(e);
